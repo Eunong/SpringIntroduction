@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th> </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member : ${members}"> <!-- thymeleaf loop 기능 -->
+                <!-- Member 클래스의 getId(), getName() getter 함수로 찾아옴(getter 이름이 다르게 선언되어 있으면 못찾아옴. 오류 발생) -->
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
