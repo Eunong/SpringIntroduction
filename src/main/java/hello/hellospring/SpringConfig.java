@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.*;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,10 @@ public class SpringConfig {
         // return new JdbcTemplateMemberRepository(dataSource);
         // return new JpaMemberRepository(em);
     // }
+
+    // @Bean
+    // public TimeTraceAop timeTraceAop() { // 보통 AOP 클래스는 component scan 대신 Aop 클래스용 Bean임을 명시적으로 나타내기 위해 Config 파일에 Bean 등록 코드를 작성한다.
+    //     return new TimeTraceAop();
+    // }
+
 }

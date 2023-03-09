@@ -22,11 +22,26 @@ public class MemberService {
      * 회원가입
      */
     public Long join(Member member) {
-        // 같은 이름이 있는 중복 회원은 가입이 불가능하다.
-        validateDuplicateMember(member);
 
+        validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
+
+        // Spring AOP가 없으면 수행시간 확인을 위해 아래와 같이 코드를 일일이 추가를 해주어야 한다.
+        /*
+        long start = System.currentTimeMillis();
+
+        try {
+            // 같은 이름이 있는 중복 회원은 가입이 불가능하다.
+            validateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        }
+        */
     }
 
     /**
@@ -44,6 +59,18 @@ public class MemberService {
      */
     public List<Member> findMembers() {
         return memberRepository.findAll();
+
+        // Spring AOP가 없으면 수행시간 확인을 위해 아래와 같은 코드를 일일이 추가를 해주어야 한다.
+        /*
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers = " + timeMs + "ms");
+        }
+        */
     }
 
     /**
